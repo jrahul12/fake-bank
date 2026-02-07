@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg custom-navbar">
+    <div class="container-fluid px-4">
+
+        <a class="navbar-brand d-flex align-items-center" routerLink="/">
+            <img src="https://img.freepik.com/premium-vector/bank-logo-design-vector-templet_1070930-31.jpg?w=2000"
+                width="45" height="45" class="me-2 rounded-circle" alt="logo">
+            <strong class="brand-text">FAKE BANK</strong>
+        </a>
+
+        <button class="navbar-toggler" type="button" (click)="isOpen = !isOpen">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" [ngClass]="{'show': isOpen}">
+
+            <ul class="navbar-nav mx-auto gap-4">
+
+                <li class="nav-item"><a class="nav-link">Personal</a></li>
+                <li class="nav-item"><a class="nav-link">NRI</a></li>
+                <li class="nav-item"><a class="nav-link">HNI</a></li>
+                <li class="nav-item"><a class="nav-link">Wholesale</a></li>
+                <li class="nav-item"><a class="nav-link">Agri</a></li>
+                <li class="nav-item"><a class="nav-link">MSME</a></li>
+
+            </ul>
+
+            <ul class="navbar-nav ms-auto align-items-center">
+
+                <li class="nav-item">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <i class="fa-solid fa-bars-staggered fa-xl"></i>
+                    </button>
+                </li>
+
+                <li class="nav-item ms-3">
+                    <button class="btn btn-danger login-btn" routerLink="login-main">LOGIN</button>
+                    
+                </li>
+
+            </ul>
+
+            <mat-menu #menu="matMenu">
+
+                <button routerLink="login" mat-menu-item>
+                    <i class="fa-solid fa-user-plus me-2"></i>
+                    <strong>Sign Up</strong>
+                </button>
+
+                <button mat-menu-item routerLink="login-main">
+                    <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>
+                    <strong>Login</strong>
+                </button>
+
+                <button mat-menu-item routerLink="admin">
+                    <i class="fa-solid fa-right-to-bracket me-2"></i>
+                    <strong>Login Admin</strong>
+                </button>
+
+            </mat-menu>
+
+        </div>
+    </div>
+</nav>

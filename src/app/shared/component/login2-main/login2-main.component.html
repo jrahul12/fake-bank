@@ -1,0 +1,122 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-end align-items-center mb-2">
+                        <button class="btn btn-sm text-danger border-0" (click)="onCancel()">
+                            <i class="fa-solid fa-xmark fa-2x"></i>
+                        </button>
+                    </div>
+
+                    <form #loginForm="ngForm" (ngSubmit)="loginUser()">
+
+                        <div class="form-group">
+                            <label>Account Number</label>
+                            <input type="text" name="account" ngModel required pattern="^[0-9]{10,12}$"
+                                #account="ngModel" class="form-control">
+
+                            <strong *ngIf="account.touched && account.errors?.['required']" class="text-danger">
+                                Account Number is required
+                            </strong>
+
+                            <strong *ngIf="account.touched && account.errors?.['pattern']" class="text-danger">
+                                Account Number must be 10–12 digits
+                            </strong>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" ngModel required
+                                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" #email="ngModel"
+                                class="form-control">
+
+                            <strong *ngIf="email.touched && email.errors?.['required']" class="text-danger">
+                                Email is required
+                            </strong>
+
+                            <strong *ngIf="email.touched && email.errors?.['pattern']" class="text-danger">
+                                Enter valid email (example@gmail.com)
+                            </strong>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" name="password" ngModel required
+                                pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&]).{8,}$" #password="ngModel"
+                                class="form-control">
+
+                            <strong *ngIf="password.touched && password.errors?.['required']" class="text-danger">
+                                Password is required
+                            </strong>
+
+                            <strong *ngIf="password.touched && password.errors?.['pattern']" class="text-danger">
+                                Password must be:
+                                <span>• 8 characters </span>
+                                <span>• 1 uppercase </span>
+                                <span>• 1 number </span>
+                                <span>• 1 special character </span>
+                            </strong>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <label>Debit/Credit Card Number</label>
+                                    <input type="text" name="card" ngModel required pattern="^[0-9]{16}$"
+                                        #card="ngModel" class="form-control">
+
+                                    <strong *ngIf="card.touched && card.errors?.['required']" class="text-danger">
+                                        Card Number is required
+                                    </strong>
+
+                                    <strong *ngIf="card.touched && card.errors?.['pattern']" class="text-danger">
+                                        Card Number must be 16 digits
+                                    </strong>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <br>
+                                    <button type="button" class="btn btn-sm btn-success" [disabled]="card.invalid"
+                                        (click)="generateOtp()">
+                                        OTP
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Enter OTP</label>
+                            <input type="text" name="otp" ngModel required pattern="^[0-9]{6}$" #otp="ngModel"
+                                class="form-control">
+
+                            <strong *ngIf="otp.touched && otp.errors?.['required']" class="text-danger">
+                                OTP is required
+                            </strong>
+
+                            <strong *ngIf="otp.touched && otp.errors?.['pattern']" class="text-danger">
+                                OTP must be 6 digits
+                            </strong>
+
+                            <strong *ngIf="otpValidation" class="text-success">
+                                OTP is {{ otpIs }}
+                            </strong>
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-sm btn-info btn-block" [disabled]="!loginForm.valid"
+                                routerLink="/main">
+                                Login With Account
+                            </button>
+                        </div>
+
+                        <strong>
+                            <a routerLink="/login">DON'T HAVE ACCOUNT? CREATE HERE</a>
+                        </strong>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,245 @@
+<div class="d-flex justify-content-center align-items-center vh-100">
+
+  <div class="col-md-8">
+    <div class="d-flex justify-content-end align-items-center mb-2">
+      <button class="btn btn-sm text-danger border-0"  (click)="onClose()">
+        <i class="fa-solid fa-xmark fa-2x"></i>
+      </button>
+    </div>
+    <form [formGroup]="accountForm" (ngSubmit)="submitForm()">
+
+      <div class="card shadow-lg">
+
+        <div class="card-header bg-primary text-white text-center">
+          <h5 class="mb-0">KYC & Address Details</h5>
+        </div>
+
+        <div class="card-body">
+
+          <div *ngIf="serverError" class="alert alert-danger text-center">
+            {{ serverError }}
+          </div>
+
+          <div *ngIf="step === 1" class="border rounded p-3 mb-4">
+
+            <h5 class="text-primary">Login Details</h5>
+
+            <div class="row">
+
+              <div class="col-md-6 mb-3">
+                <label>Email</label>
+                <input class="form-control" formControlName="email"
+                  [ngClass]="{'is-invalid': accountForm.get('email')?.touched && accountForm.get('email')?.invalid}">
+
+                <span class="text-danger" *ngIf="accountForm.get('email')?.touched &&
+                             accountForm.get('email')?.errors?.['required']">
+                  Email is required
+                </span>
+
+                <span class="text-danger" *ngIf="accountForm.get('email')?.touched &&
+                             accountForm.get('email')?.errors?.['email']">
+                  Enter valid email
+                </span>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label>Password</label>
+                <input type="password" class="form-control" formControlName="password"
+                  [ngClass]="{'is-invalid': accountForm.get('password')?.touched && accountForm.get('password')?.invalid}">
+
+                <span class="text-danger" *ngIf="accountForm.get('password')?.touched &&
+                             accountForm.get('password')?.errors?.['required']">
+                  Password is required
+                </span>
+
+                <span class="text-danger" *ngIf="accountForm.get('password')?.touched &&
+                             accountForm.get('password')?.errors?.['minlength']">
+                  Minimum 8 characters required
+                </span>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="userRole">userRole</label>
+                  <select formControlName="userRole" class="form-control">
+                    <option value="admin">admin</option>
+                    <option value="superAdmin">Super Admin</option>
+                    <option value="buyer">Buyer</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+
+            <button type="button" class="btn btn-primary w-100 mt-3" (click)="goToStep2()">
+              Next: KYC
+            </button>
+
+          </div>
+
+          <div *ngIf="step === 2" class="border rounded p-3 mb-4">
+
+            <h5 class="text-primary">KYC & Mobile Verification</h5>
+
+            <div class="row">
+
+              <div class="col-md-6 mb-3">
+                <label>Aadhaar Number</label>
+                <input class="form-control" formControlName="aadhar"
+                  [ngClass]="{'is-invalid': accountForm.get('aadhar')?.touched && accountForm.get('aadhar')?.invalid}">
+
+                <span class="text-danger" *ngIf="accountForm.get('aadhar')?.touched &&
+                             accountForm.get('aadhar')?.errors?.['required']">
+                  Aadhaar is required
+                </span>
+
+                <span class="text-danger" *ngIf="accountForm.get('aadhar')?.touched &&
+                             accountForm.get('aadhar')?.errors?.['pattern']">
+                  Must be 12 digits
+                </span>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label>PAN Number</label>
+                <input class="form-control" formControlName="pan"
+                  [ngClass]="{'is-invalid': accountForm.get('pan')?.touched && accountForm.get('pan')?.invalid}">
+
+                <span class="text-danger" *ngIf="accountForm.get('pan')?.touched &&
+                             accountForm.get('pan')?.errors?.['required']">
+                  PAN is required
+                </span>
+
+                <span class="text-danger" *ngIf="accountForm.get('pan')?.touched &&
+                             accountForm.get('pan')?.errors?.['pattern']">
+                  Invalid PAN format Like (ABCDE1234F)
+                </span>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label>Mobile Number</label>
+                <input class="form-control" formControlName="mobile"
+                  [ngClass]="{'is-invalid': accountForm.get('mobile')?.touched && accountForm.get('mobile')?.invalid}">
+
+                <span class="text-danger" *ngIf="accountForm.get('mobile')?.touched &&
+                             accountForm.get('mobile')?.errors?.['required']">
+                  Mobile is required
+                </span>
+
+                <span class="text-danger" *ngIf="accountForm.get('mobile')?.touched &&
+                             accountForm.get('mobile')?.errors?.['pattern']">
+                  Enter valid 10-digit number
+                </span>
+              </div>
+
+              <div class="col-md-6 mb-3 d-flex align-items-end">
+                <button type="button" class="btn btn-outline-primary w-100" (click)="onOtp()">
+                  Send OTP
+                </button>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label>Enter OTP</label>
+                <input class="form-control" formControlName="otp"
+                  [ngClass]="{'is-invalid': accountForm.get('otp')?.touched && accountForm.get('otp')?.invalid}">
+
+                <span class="text-danger" *ngIf="accountForm.get('otp')?.touched &&
+                             accountForm.get('otp')?.errors?.['required']">
+                  OTP is required
+                </span>
+
+                <span class="text-danger" *ngIf="accountForm.get('otp')?.touched &&
+                             accountForm.get('otp')?.errors?.['pattern']">
+                  OTP must be 6 digits
+                </span>
+
+                <strong class="text-success" *ngIf="isOtpValid">
+                  OTP Generated Successfully ✔
+                </strong>
+              </div>
+
+            </div>
+
+            <button type="button" class="btn btn-primary w-100 mt-3" (click)="goToStep3()">
+              Next: Address
+            </button>
+
+          </div>
+
+          <div *ngIf="step === 3" class="border rounded p-3">
+
+            <h5 class="text-primary mb-3">Current Address</h5>
+
+            <div class="row">
+
+              <div class="col-md-6 mb-3">
+                <label>City</label>
+                <input class="form-control" formControlName="currentCity">
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label>Pincode</label>
+                <input class="form-control" formControlName="currentPincode">
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label>State</label>
+                <input class="form-control" formControlName="currentState">
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label>Country</label>
+                <input class="form-control" formControlName="currentCountry">
+              </div>
+
+            </div>
+
+            <hr>
+
+            <div class="form-check mb-3">
+              <input type="checkbox" class="form-check-input" formControlName="sameAsCurrent"
+                (change)="copyAddress($event)" id="sameAddr">
+
+              <label class="form-check-label fw-bold" for="sameAddr">
+                Same as Current Address
+              </label>
+            </div>
+
+            <h5 class="text-primary mb-3">Permanent Address</h5>
+
+            <div class="row">
+
+              <div class="col-md-6 mb-3">
+                <label>City</label>
+                <input class="form-control" formControlName="permanentCity">
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label>Pincode</label>
+                <input class="form-control" formControlName="permanentPincode">
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label>State</label>
+                <input class="form-control" formControlName="permanentState">
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label>Country</label>
+                <input class="form-control" formControlName="permanentCountry">
+              </div>
+
+            </div>
+
+            <button class="btn btn-primary w-100 mt-4" [disabled]="accountForm.invalid">
+              Submit & Create Account
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="container input mt-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="text-center mb-3">Search Transaction</h5>
+                    <input type="text" [(ngModel)]="searchVal" class="form-control"
+                        placeholder="Enter transaction id or Name...">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt-4">
+    <div class="row">
+
+        <div class="col-md-3 mb-4" *ngFor="let bank of bankArr|filter:searchVal">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+
+                    <p><strong>Name:</strong> {{ bank.description }}</p>
+                    <p><strong>Date:</strong> {{ bank.transactionDate }}</p>
+                    <p><strong>Category:</strong> {{ bank.category }}</p>
+                    <p><strong>Debit:</strong> ₹{{ bank.debit }}</p>
+                    <p><strong>Credit:</strong> {{ bank.credit || 'N/A' }}</p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
