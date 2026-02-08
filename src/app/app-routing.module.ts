@@ -7,11 +7,12 @@ import { UserDashboardComponent } from './shared/component/user-dashboard/user-d
 import { AdminComponent } from './shared/component/admin/admin.component';
 import { NavbarComponent } from './shared/component/navbar/navbar.component';
 import { ForUserShowComponent } from './shared/component/for-user-show/for-user-show.component';
+import { Navbar2Component } from './shared/component/navbar2/navbar2.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ForUserShowComponent
+    component: Navbar2Component
   },
   {
     path: 'user',

@@ -23,6 +23,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { AdminComponent } from './shared/component/admin/admin.component';
 import { ForUserShowComponent } from './shared/component/for-user-show/for-user-show.component';
 import { ConfirmComponent } from './shared/component/confirm/confirm.component';
+import { Navbar2Component } from './shared/component/navbar2/navbar2.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ConfirmComponent } from './shared/component/confirm/confirm.component';
     Login2MainComponent,
     AdminComponent,
     ForUserShowComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    Navbar2Component
   ],
   imports: [
     MatButtonModule,
