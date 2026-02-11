@@ -8,6 +8,14 @@ import { AdminComponent } from './shared/component/admin/admin.component';
 import { NavbarComponent } from './shared/component/navbar/navbar.component';
 import { ForUserShowComponent } from './shared/component/for-user-show/for-user-show.component';
 import { Navbar2Component } from './shared/component/navbar2/navbar2.component';
+import { CurrentDashboardComponent } from './shared/crurrent-component/current-dashboard/current-dashboard.component';
+import { CurrentMainComponent } from './shared/crurrent-component/current-main/current-main.component';
+import { SavingDashboardComponent } from './shared/saving/saving-dashboard/saving-dashboard.component';
+import { SavingThankYouComponent } from './shared/saving/saving-thank-you/saving-thank-you.component';
+import { DonationComponent } from './shared/component-2/donation/donation.component';
+import { ShowDonationComponent } from './shared/component-2/show-donation/show-donation.component';
+import { ServicesComponent } from './shared/component-2/services/services.component';
+import { DebitCardComponent } from './shared/component-2/debit-card/debit-card.component';
 
 const routes: Routes = [
   {
@@ -31,8 +39,40 @@ const routes: Routes = [
     component: AdminComponent
   },
   {
-    path:'main',
-    component:MainDashboardComponent
+    path: 'main',
+    component: MainDashboardComponent
+  },
+  {
+    path: 'current',
+    component: CurrentDashboardComponent
+  },
+  {
+    path: 'main-current',
+    component: CurrentMainComponent
+  },
+  {
+    path: 'saving',
+    component: SavingDashboardComponent
+  },
+  {
+    path: 'saving-thank',
+    component: SavingThankYouComponent
+  },
+  {
+    path: 'donation',
+    component: DonationComponent
+  },
+  {
+    path: 'show-donation',
+    component: ShowDonationComponent
+  },
+  {
+    path: 'services',
+    component: ServicesComponent
+  },
+  {
+    path: 'debit',
+    component: DebitCardComponent
   }
 ];
 

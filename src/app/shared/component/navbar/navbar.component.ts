@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { languages } from '../../const/data';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,15 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  isOpen: boolean = false
+  isOpen = false;
+  showAccountMenu = false;
 
-  constructor() { }
+  labguageArr = languages;
+
+  constructor(private langService: LanguageService) { }
 
   ngOnInit(): void {
+    // Language is already loaded inside the service
   }
 
   onShow() {
-    this.isOpen = !this.isOpen
+    this.isOpen = !this.isOpen;
   }
 
+  toggleAccountMenu() {
+    this.showAccountMenu = !this.showAccountMenu;
+  }
+
+  changeLanguage(event: any) {
+    const selectedText = event.target.value;
+    this.langService.setLanguage(selectedText);
+  }
 }

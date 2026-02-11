@@ -1,0 +1,91 @@
+<form [formGroup]="form">
+
+    <div class="container">
+
+        <h2>Apply for Debit Card</h2>
+        <p class="subtitle">Fast • Secure • Contactless</p>
+
+        <div class="stepper">
+            <span [class.active]="step>=1">Details</span>
+            <span [class.active]="step>=2">Verify</span>
+            <span [class.active]="step>=3">Choose Card</span>
+            <span [class.active]="step>=4">Confirm</span>
+        </div>
+
+        <div *ngIf="step===1" class="card">
+            <h3>Your Details</h3>
+
+            <div class="grid">
+
+                <input placeholder="Full Name" formControlName="fullName">
+                <small class="error" *ngIf="form.controls['fullName'].touched && form.controls['fullName'].invalid">
+                    Name is required (min 3 characters)
+                </small>
+
+                <input placeholder="Account Number" formControlName="accountNo">
+                <small class="error" *ngIf="form.controls['accountNo'].touched && form.controls['accountNo'].invalid">
+                    Enter valid account number (10-16 digits)
+                </small>
+
+                <input placeholder="Registered Mobile" formControlName="mobile">
+                <small class="error" *ngIf="form.controls['mobile'].touched && form.controls['mobile'].invalid">
+                    Enter valid 10-digit mobile number
+                </small>
+
+                <input placeholder="Email ID" formControlName="email">
+                <small class="error" *ngIf="form.controls['email'].touched && form.controls['email'].invalid">
+                    Enter valid email
+                </small>
+
+            </div>
+
+            <button type="button" (click)="nextStep()" class="primary">Continue →</button>
+        </div>
+
+        <div *ngIf="step===2" class="card">
+            <h3>Verify Mobile</h3>
+
+            <input placeholder="Enter OTP" formControlName="otp">
+
+            <small class="error" *ngIf="form.controls['otp'].touched && form.controls['otp'].invalid">
+                Enter valid 6-digit OTP
+            </small>
+
+            <p class="small">OTP sent to your registered number</p>
+
+            <div class="btn-row">
+                <button type="button" (click)="prevStep()" class="secondary">← Back</button>
+                <button type="button" (click)="nextStep()" class="primary">Verify →</button>
+            </div>
+        </div>
+
+        <div *ngIf="step===3" class="card">
+            <h3>Choose Your Card</h3>
+
+            <div class="card-options">
+                <div class="option">Classic (Free)</div>
+                <div class="option recommended">Platinum (Recommended)</div>
+                <div class="option">Premium Metal</div>
+            </div>
+
+            <div class="btn-row">
+                <button type="button" (click)="prevStep()" class="secondary">← Back</button>
+                <button type="button" (click)="nextStep()" class="primary">Continue →</button>
+            </div>
+        </div>
+
+        <div *ngIf="step===4" class="card">
+            <h3>Confirm & Submit</h3>
+
+            <p>Delivery in 5–7 working days.</p>
+            <p>Address will be taken from your account.</p>
+
+            <div class="btn-row">
+                <button type="button" (click)="prevStep()" class="secondary">← Back</button>
+                <button type="button" class="primary" (click)="onApply()">Apply Now</button>
+            </div>
+        </div>
+
+    </div>
+
+</form>

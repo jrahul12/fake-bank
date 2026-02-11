@@ -126,7 +126,7 @@ export class LoginUserComponent implements OnInit {
 
     this.loginService.signup(sendData).subscribe({
       next: (res) => {
-
+        this._router.navigate(['/login-main'])
         Swal.fire({
           title: 'Account Created!',
           text: 'Your account has been successfully registered.',

@@ -6,3 +6,7 @@ export interface ITransaction {
     credit: number | null;
     id: number;
 }
+
+
+export interface languages {
+}

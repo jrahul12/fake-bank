@@ -4,23 +4,20 @@
     padding-bottom: 20px;
 }
 
-/* Background banner */
-.background-banner img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
+.left-menu span {
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 20px;
+    transition:
+        background 0.3s ease,
+        transform 0.2s ease;
 }
 
-/* Top warning bar */
-.top-bar {
-    background: white;
-    text-align: center;
-    padding: 10px;
-    font-size: 12px;
-    color: green;
+.left-menu span:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
 }
 
-/* Navbar */
 .sbi-navbar {
     display: flex;
     justify-content: space-between;
@@ -31,54 +28,87 @@
     font-size: 13px;
 }
 
-/* Header */
+.sbi-navbar .left-menu {
+    display: flex;
+    gap: 15px;
+}
+
+.sbi-navbar .right-menu select {
+    border-radius: 4px;
+    padding: 5px;
+    font-size: 12px;
+}
+
 .sbi-header {
     background: white;
     padding: 15px 20px;
     border-bottom: 1px solid #ddd;
 }
 
-/* Main panels */
+.top-bar {
+    background: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    color: green;
+    border-bottom: 1px solid #ddd;
+}
+
+.background-banner img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
 .main-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 0 15px;
 }
 
 .bank-row {
-    display: flex;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
 }
 
 .bank-card {
     background: white;
-    width: 380px;
     padding: 25px;
     text-align: center;
-    box-shadow: 0px 0px 5px gray;
-    border-radius: 6px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out;
 }
 
-/* Buttons */
+.bank-card:hover {
+    transform: translateY(-3px);
+}
+
 .login-btn {
     background: #0033cc;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 25px;
     margin: 10px 0;
     cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
 }
 
-/* Footer links */
+.login-btn:hover {
+    background: #002699;
+}
+
 .footer-links {
     display: flex;
     justify-content: space-around;
     margin-top: 30px;
     padding: 15px;
     background: white;
+    border-top: 1px solid #ddd;
 }
 
-/* Warning banner */
 .warning-banner {
     background: white;
     color: red;
@@ -88,30 +118,143 @@
     border-top: 1px solid #ddd;
 }
 
-/* Social sidebar */
 .social-sidebar {
     position: fixed;
-    right: 5px;
-    top: 200px;
+    right: 8px;
+    top: 220px;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
     z-index: 1000;
 }
 
 .social-box {
     background: white;
-    padding: 8px;
+    padding: 10px;
     text-align: center;
-    box-shadow: 0px 0px 3px gray;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
     cursor: pointer;
+    border-radius: 6px;
 }
 
-/* Bottom grid */
 .bottom-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     background: #f5f5f5;
     padding: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+    .bank-row {
+        grid-template-columns: 1fr;
+    }
+
+    .bottom-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .sbi-navbar {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+
+    .bottom-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.background-banner {
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    position: relative;
+}
+
+.background-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.banner-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.15);
+}
+.bank-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.bank-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+.main-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 15px;
+}
+.bank-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+@media (max-width: 900px) {
+    .bank-row {
+        grid-template-columns: 1fr;
+    }
+}
+.sbi-navbar .left-menu {
+    display: flex;
+    gap: 15px;
+}
+
+.sbi-navbar span {
+    cursor: pointer;
+}
+
+.sbi-navbar span:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .sbi-navbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .sbi-navbar .left-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .right-menu {
+        width: 100%;
+        text-align: center;
+    }
+
+    .right-menu select {
+        width: 60%;
+    }
 }

@@ -32,8 +32,8 @@
 
                         <div class="form-group mb-3">
                             <label>Admin Id</label>
-                            <input type="text" name="admin" ngModel required pattern="^ADMIN[0-9]{3}$" #admin="ngModel"
-                                class="form-control" placeholder="Example: ADMIN123">
+                            <input type="text" name="adminId" ngModel required pattern="^ADMIN[0-9]{3}$"
+                                #admin="ngModel" class="form-control" placeholder="Example: ADMIN123">
 
                             <small class="text-danger" *ngIf="admin.touched && admin.invalid">
                                 <span *ngIf="admin.errors?.['required']">Admin Id required</span>
@@ -43,7 +43,8 @@
                             </small>
                         </div>
 
-                        <button [disabled]="loginForm.invalid" routerLink="/user" class="btn btn-warning">
+                        <button [disabled]="loginForm.invalid" routerLink="/user" type="button"
+                            class="btn btn-warning">
                             Login Admin
                         </button>
 

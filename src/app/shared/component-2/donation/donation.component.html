@@ -1,0 +1,79 @@
+<div class="donation-section mt-5">
+
+    <div class="d-flex justify-content-center gap-3 mb-4">
+        <button mat-raised-button color="primary" class="mr-4" (click)="isForm = true">
+            <i class="fa-solid fa-hand-holding-heart me-1"></i>
+            Donate Money
+        </button>
+
+        <button mat-raised-button color="warn" routerLink="/show-donation">
+            <i class="fa-solid fa-table me-1"></i>
+            Show Donations
+        </button>
+    </div>
+
+    <div class="donation-health-card " *ngIf="isForm" (click)="onShow()">
+
+        <div class="d-flex justify-content-between">
+            <h3>Donate for Health Care</h3>
+
+            <i style="cursor: pointer;" routerLink="/" class="fa-solid fa-xmark fa-2x text-danger"></i>
+        </div>
+
+        <form class="donation-form" #donationForm="ngForm" (ngSubmit)="onForm()">
+
+            <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" ngModel name="name" #name="ngModel" placeholder="Enter your name" required
+                    pattern="^[A-Za-z ]+$">
+
+                <div class="text-danger" *ngIf="name.touched && name.invalid">
+                    <small *ngIf="name.errors?.['required']">Name is required.</small>
+                    <small *ngIf="name.errors?.['pattern']">Only letters allowed.</small>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" ngModel name="email" #email="ngModel" placeholder="Enter your email" required
+                    pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+
+                <div class="text-danger" *ngIf="email.touched && email.invalid">
+                    <small *ngIf="email.errors?.['required']">Email is required.</small>
+                    <small *ngIf="email.errors?.['pattern']">ex:- Abc@gmail.com</small>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Donation Amount (₹)</label>
+                <input type="number" ngModel name="amount" #amount="ngModel" placeholder="Enter amount" required
+                    min="10" max="100000">
+
+                <div class="text-danger" *ngIf="amount.touched && amount.invalid">
+                    <small *ngIf="amount.errors?.['required']">Amount is required.</small>
+                    <small *ngIf="amount.errors?.['min']">Minimum ₹10 required.</small>
+                    <small *ngIf="amount.errors?.['max']">Max ₹1,00,000 allowed.</small>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="text" ngModel name="phone" #phone="ngModel" class="form-control"
+                    placeholder="Enter Phone Number" required pattern="^[6-9][0-9]{9}$">
+
+                <div class="text-danger" *ngIf="phone.touched && phone.invalid">
+                    <small *ngIf="phone.errors?.['required']">Phone is required.</small>
+                    <small *ngIf="phone.errors?.['pattern']">Enter valid 10-digit number.</small>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-sm btn-primary" [disabled]="donationForm.invalid">
+                Proceed to Pay
+            </button>
+
+        </form>
+
+
+    </div>
+
+</div>

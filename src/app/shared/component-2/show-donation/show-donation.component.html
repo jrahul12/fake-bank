@@ -1,0 +1,47 @@
+<div class="container mt-5 mb-5">
+
+    <div class="row justify-content-center">
+
+
+        <div class="col-lg-8 col-md-10 col-sm-12">
+            <div class="card shadow-sm p-3 ">
+                <div class="d-flex justify-content-between">
+                    <h4 class=" text-primary">
+                        Donation Records
+                    </h4>
+                    <i style="cursor: pointer;" class=" fa-solid fa-xmark fa-2x text-danger" routerLink="/donation"></i>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead class="table-dark text-center">
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Contact</th>
+                                <th>Amount (₹)</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr *ngFor="let don of donationArr; let i = index">
+                                <td class="text-center">{{ i + 1 }}</td>
+                                <td>{{ don.name }}</td>
+                                <td>{{ don.email }}</td>
+                                <td>{{ don.phone }}</td>
+                                <td class="fw-bold text-success">₹ {{ don.amount }}</td>
+                            </tr>
+
+                            <tr *ngIf="donationArr.length === 0">
+                                <td colspan="5" class="text-center text-muted py-3">
+                                    No donations found.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

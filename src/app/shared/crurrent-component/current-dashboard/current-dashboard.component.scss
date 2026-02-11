@@ -1,0 +1,18 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    background-image: url("https://www.enkash.com/resources/wp-content/uploads/2023/02/Benefits-of-Current-Account.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 12px;
+}
+
+.card.shadow {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}

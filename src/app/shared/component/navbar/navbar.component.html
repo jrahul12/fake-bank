@@ -1,62 +1,86 @@
-<nav class="navbar navbar-expand-lg custom-navbar">
-    <div class="container-fluid px-4">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container-fluid">
 
         <a class="navbar-brand d-flex align-items-center" routerLink="/">
             <img src="https://img.freepik.com/premium-vector/bank-logo-design-vector-templet_1070930-31.jpg?w=2000"
-                width="45" height="45" class="me-2 rounded-circle" alt="logo">
-            <strong class="brand-text">FAKE BANK</strong>
+                width="38" height="38" class="me-2 rounded-circle" alt="logo">
+            <strong class="text-warning">FAKE BANK</strong>
         </a>
 
-        <button class="navbar-toggler" type="button" (click)="isOpen = !isOpen">
+        <button class="navbar-toggler" type="button" (click)="onShow()">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" [ngClass]="{'show': isOpen}">
 
-            <ul class="navbar-nav mx-auto gap-4">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                <li class="nav-item"><a class="nav-link">Personal</a></li>
-                <li class="nav-item"><a class="nav-link">NRI</a></li>
-                <li class="nav-item"><a class="nav-link">HNI</a></li>
-                <li class="nav-item"><a class="nav-link">Wholesale</a></li>
-                <li class="nav-item"><a class="nav-link">Agri</a></li>
-                <li class="nav-item"><a class="nav-link">MSME</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/">{{ 'HOME' | translate }}</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="current">{{ 'CURRENT' | translate }}</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="saving">{{ 'SAVING' | translate }}</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="donation">{{ 'DONATE_MONEY' | translate }}</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="admin">{{ 'ADMIN_LOGIN' | translate }}</a>
+                </li>
 
             </ul>
 
             <ul class="navbar-nav ms-auto align-items-center">
 
-                <li class="nav-item">
-                    <button mat-icon-button [matMenuTriggerFor]="menu">
-                        <i class="fa-solid fa-bars-staggered fa-xl"></i>
-                    </button>
+                <li class="nav-item dropdown me-3">
+
+                    <a class="nav-link dropdown-toggle text-light" href="javascript:void(0)"
+                        (click)="toggleAccountMenu()">
+
+                        <i class="fa-solid fa-user-circle fa-lg"></i>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-end shadow" *ngIf="showAccountMenu">
+
+                        <a class="dropdown-item" routerLink="login">
+                            {{ 'SIGN_UP' | translate }}
+                        </a>
+
+                        <a class="dropdown-item" routerLink="login-main">
+                            {{ 'LOGIN' | translate }}
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <a class="dropdown-item" routerLink="admin">
+                            {{ 'ADMIN_LOGIN' | translate }}
+                        </a>
+                    </div>
                 </li>
 
-                <li class="nav-item ms-3">
-                    <button class="btn btn-danger login-btn" routerLink="login-main">LOGIN</button>
+                <li class="nav-item">
+                    <select class="form-select form-select-sm" (change)="changeLanguage($event)">
+
+                        <option value="">
+                            {{ 'SELECT_LANGUAGE' | translate }}
+                        </option>
+
+                        <option *ngFor="let lang of labguageArr" [value]="lang">
+                            {{ lang }}
+                        </option>
+
+                    </select>
 
                 </li>
 
             </ul>
-
-            <mat-menu #menu="matMenu">
-
-                <button routerLink="login" mat-menu-item>
-                    <i class="fa-solid fa-user-plus me-2"></i>
-                    <strong>Sign Up</strong>
-                </button>
-
-                <button mat-menu-item routerLink="login-main">
-                    <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>
-                    <strong>Login</strong>
-                </button>
-
-                <button mat-menu-item routerLink="admin">
-                    <i class="fa-solid fa-right-to-bracket me-2"></i>
-                    <strong>Login Admin</strong>
-                </button>
-
-            </mat-menu>
 
         </div>
     </div>
