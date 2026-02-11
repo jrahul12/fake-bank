@@ -39,15 +39,15 @@
 
             <ul class="navbar-nav ms-auto align-items-center">
 
-                <li class="nav-item dropdown me-3">
+                <li class="nav-item me-3 position-relative">
 
-                    <a class="nav-link dropdown-toggle text-light" href="javascript:void(0)"
-                        (click)="toggleAccountMenu()">
+                    <a class="nav-link text-light" (click)="toggleAccountMenu($event); $event.preventDefault()">
 
-                        <i class="fa-solid fa-user-circle fa-lg"></i>
+                        <i class="fa-solid fa-user-circle fa-2x "></i>
                     </a>
 
-                    <div class="dropdown-menu dropdown-menu-end shadow" *ngIf="showAccountMenu">
+                    <div class="dropdown-menu dropdown-menu-end shadow d-block" *ngIf="showAccountMenu"
+                        (click)="$event.stopPropagation()">
 
                         <a class="dropdown-item" routerLink="login">
                             {{ 'SIGN_UP' | translate }}
@@ -77,11 +77,9 @@
                         </option>
 
                     </select>
-
                 </li>
 
             </ul>
-
         </div>
     </div>
 </nav>

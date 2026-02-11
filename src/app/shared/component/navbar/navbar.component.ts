@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { languages } from '../../const/data';
 import { LanguageService } from '../../services/language.service';
 
@@ -16,16 +16,20 @@ export class NavbarComponent implements OnInit {
 
   constructor(private langService: LanguageService) { }
 
-  ngOnInit(): void {
-    // Language is already loaded inside the service
-  }
+  ngOnInit(): void { }
 
   onShow() {
     this.isOpen = !this.isOpen;
   }
 
-  toggleAccountMenu() {
+  toggleAccountMenu(event: MouseEvent) {
+    event.stopPropagation();
     this.showAccountMenu = !this.showAccountMenu;
+  }
+
+  @HostListener('document:click')
+  closeMenu() {
+    this.showAccountMenu = false;
   }
 
   changeLanguage(event: any) {
